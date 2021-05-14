@@ -19,9 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view_binding.ViewBindingActivity"
-            android:theme="@style/Theme.JetpackPractice.NoActionBar" />
+        <activity android:name=".view_binding.ViewBindingActivity" />
+        <activity android:name=".data_store.DataStoreActivity" />
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.yh.jetpack
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yh.jetpack.base.BaseActivity
+import com.yh.jetpack.base.startActivity
+import com.yh.jetpack.data_store.DataStoreActivity
 import com.yh.jetpack.databinding.ActivityMainBinding
 import com.yh.jetpack.view_binding.ViewBindingActivity
 
@@ -27,15 +28,14 @@ class MainActivity : BaseActivity() {
      * 初始化菜单列表
      */
     private fun initMenuList() {
-        val dataSet = listOf<String>("Compose", "LiveData")
+        val dataSet = listOf<String>("Compose", "LiveData", "DataStore")
         binding.rvMenu.layoutManager = LinearLayoutManager(this)
         val adapter = CustomAdapter(dataSet.toTypedArray())
         adapter.setOnItemClick(object : CustomAdapter.OnItemClick {
             override fun onItemClick(position: Int) {
                 when (position) {
-                    0 -> {
-                        goToPage()
-                    }
+                    0 -> goToPage()
+                    2 -> goToDataStorePage()
                 }
             }
         })
@@ -43,10 +43,12 @@ class MainActivity : BaseActivity() {
     }
 
     fun goToPage() {
-        val intent = Intent(this, ViewBindingActivity::class.java)
-        startActivity(intent)
+        startActivity<ViewBindingActivity>(this)
     }
 
+    fun goToDataStorePage() {
+        startActivity<DataStoreActivity>(this)
+    }
 }
 
 class CustomAdapter(private val dataSet: Array<String>) :
